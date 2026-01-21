@@ -2,16 +2,16 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend TypeScript pour la plateforme de mentoring",
-  "main": "dist/server.js",
+  "main": "dist/server.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server.js",
-    "dev": "nodemon src/server.ts",
+    "start": "ts-node src/server.ts",
+    "dev": "ts-node --watch src/server.ts",
     "test": "jest",
     "lint": "eslint src/**/*.ts",
     "type-check": "tsc --noEmit",
-    "db:migrate": "node dist/scripts/migrate.js",
-    "db:seed": "node dist/scripts/seed.js"
+    "db:migrate": "ts-node src/scripts/migrate.ts",
+    "db:seed": "ts-node src/scripts/seed.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
