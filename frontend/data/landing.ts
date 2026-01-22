@@ -19,7 +19,7 @@ export const faqs = [
 
 export const mentors = [
     {
-        name: "Armle komlan BOGUE",
+        name: "Armel komlan BOGUE",
         role: "Senior Fullstack developer",
         company: "Google",
         experience: "5 ans d'expérience",
@@ -35,7 +35,7 @@ export const mentors = [
         image: "https://i.pravatar.cc/300?u=marc"
     },
     {
-        name: "julieb eymard PITO",
+        name: "julien eymard PITO",
         role: "Devops engeneer",
         company: "Station F",
         experience: "10 ans d'expérience",
