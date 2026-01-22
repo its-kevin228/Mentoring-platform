@@ -55,7 +55,7 @@ export default function Footer() {
                     </div>
                     <a
                         href="mailto:contact@mentorplatform.com"
-                        className="text-2xl md:text-4xl font-black text-primary hover:underline flex items-center gap-4 transition-all"
+                        className="text-lg md:text-2xl font-black text-primary hover:underline flex items-center gap-4 transition-all"
                     >
                         <Mail className="w-8 h-8 md:w-10 md:h-10" />
                         Nous écrire
