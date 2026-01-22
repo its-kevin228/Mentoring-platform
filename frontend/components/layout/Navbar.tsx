@@ -17,8 +17,8 @@ export default function Navbar() {
                         <li><Link href="#faq">FAQ</Link></li>
                     </ul>
                 </div>
-                <Link href="/" className="flex items-center gap-3">
-                    <img src="/logo/unimentor.png" alt="UniMentor Logo" className="h-20 w-auto object-contain py-2" />
+                <Link href="/" className="flex items-center">
+                    <img src="/logo/unimentor.png" alt="UniMentor Logo" className="h-40 w-auto object-contain" />
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
