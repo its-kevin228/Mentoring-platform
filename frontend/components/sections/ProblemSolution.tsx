@@ -1,41 +1,57 @@
-import { XCircle, CheckCircle2 } from "lucide-react";
 import { problemPoints } from "@/data/landing";
+import { TrendingUp, Target, Users, CheckCircle2 } from "lucide-react";
+
+const iconsMap = [TrendingUp, Target, Users];
 
 export default function ProblemSolution() {
     return (
-        <section id="problem" className="py-24 bg-base-100">
+        <section className="py-24 bg-white overflow-hidden">
             <div className="container mx-auto px-4 md:px-8">
-                <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                    <h2 className="text-primary font-bold uppercase tracking-wider text-sm italic">Problème & Solution</h2>
-                    <h3 className="text-4xl md:text-5xl font-bold tracking-tight">Pourquoi avez-vous besoin d'un mentor ?</h3>
-                    <p className="text-lg text-base-content/70">La solitude du leader ou de l'apprenant est le plus grand frein à la réussite. Nous comblons ce fossé.</p>
+                {/* Header contextuelle */}
+                <div className="max-w-3xl mb-16">
+                    <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Pourquoi UniMentor ?</h2>
+                    <h3 className="text-4xl md:text-5xl font-black text-neutral leading-tight">
+                        Transformez vos obstacles en <span className="text-primary italic">opportunités</span>
+                    </h3>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
-                    {problemPoints.map((point, index) => (
-                        <div key={index} className="card bg-base-200 border border-base-300 overflow-hidden hover:shadow-2xl transition-all hover:-translate-y-2 group">
-                            <div className="p-8 space-y-6">
-                                <div className="text-4xl bg-white w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                                    {point.icon}
+                {/* Layout Alternatif : Liste épurée sans bordures de cartes */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20">
+                    {problemPoints.map((point, index) => {
+                        const Icon = iconsMap[index] || CheckCircle2;
+                        return (
+                            <div key={index} className="flex flex-col space-y-6 group">
+                                {/* Icon with subtle accent */}
+                                <div className="w-16 h-16 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300  group-hover:shadow-lg group-hover:shadow-primary/20">
+                                    <Icon size={32} strokeWidth={1.5} />
                                 </div>
 
+                                {/* Content without card box */}
                                 <div className="space-y-4">
-                                    <div className="flex gap-3 text-error/80">
-                                        <XCircle className="flex-shrink-0" size={20} />
-                                        <p className="font-medium text-sm md:text-base italic">{point.problem}</p>
+                                    <div className="flex flex-col space-y-2">
+                                        <span className="text-xs font-bold text-error/60 uppercase tracking-tighter">Le problème</span>
+                                        <h4 className="text-xl font-bold text-neutral group-hover:text-primary transition-colors">
+                                            {point.problem}
+                                        </h4>
                                     </div>
 
-                                    <div className="divider opacity-10"></div>
-
-                                    <div className="flex gap-3 text-success">
-                                        <CheckCircle2 className="flex-shrink-0" size={20} />
-                                        <p className="font-bold text-sm md:text-base">{point.solution}</p>
+                                    <div className="flex flex-col space-y-2 pt-4 border-t border-base-100">
+                                        <div className="flex items-center gap-2">
+                                            <CheckCircle2 size={16} className="text-primary" />
+                                            <span className="text-xs font-bold text-primary uppercase tracking-tighter">Notre solution</span>
+                                        </div>
+                                        <p className="text-base-content/70 leading-relaxed font-medium">
+                                            {point.solution}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
+
+                {/* Subtle brand divider */}
+                <div className="mt-20 h-px w-full bg-gradient-to-r from-transparent via-base-200 to-transparent"></div>
             </div>
         </section>
     );

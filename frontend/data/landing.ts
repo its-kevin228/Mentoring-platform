@@ -19,24 +19,24 @@ export const faqs = [
 
 export const mentors = [
     {
-        name: "Dr. Sarah Johnson",
-        role: "Senior Engineering Manager",
+        name: "Armle komlan BOGUE",
+        role: "Senior Fullstack developer",
         company: "Google",
-        experience: "12 ans d'expérience",
+        experience: "5 ans d'expérience",
         tags: ["Clôture de projets", "Soft Skills"],
         image: "https://i.pravatar.cc/300?u=sarah"
     },
     {
-        name: "Marc Durand",
-        role: "Lead Designer UX/UI",
+        name: "kevin gnimdou PEKPELI",
+        role: "Lead Fullstack developer",
         company: "Airbnb",
         experience: "8 ans d'expérience",
         tags: ["User Discovery", "Figma Expert"],
         image: "https://i.pravatar.cc/300?u=marc"
     },
     {
-        name: "Léa Morel",
-        role: "CTO & Co-fondatrice",
+        name: "julieb eymard PITO",
+        role: "Devops engeneer",
         company: "Station F",
         experience: "10 ans d'expérience",
         tags: ["Scalability", "Leadership"],

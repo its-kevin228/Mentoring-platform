@@ -16,7 +16,7 @@ export default function FeaturedMentors() {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {mentors.map((mentor, index) => (
-                        <div key={index} className="card bg-base-100 shadow-xl border border-base-200 group overflow-hidden">
+                        <div key={index} className="card bg-base-100 border border-base-200 group overflow-hidden">
                             <figure className="relative h-64">
                                 <img src={mentor.image} alt={mentor.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                                 <div className="absolute bottom-4 left-4">

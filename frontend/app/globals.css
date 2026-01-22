@@ -4,14 +4,14 @@
 @theme {
   --font-sans: var(--font-inter);
 
-  /* Brand Colors from Logo */
-  --color-primary: #0d9488;
-  /* Teal */
-  --color-secondary: #2dd4bf;
-  /* Mint */
-  --color-accent: #10b981;
-  /* Emerald accent */
-  --color-neutral: #1f2937;
+  /* Brand Colors - Vert Crystal */
+  --color-primary: #00df9a;
+  /* Crystal Green / Mint Vibrant */
+  --color-secondary: #00f5d4;
+  /* Lighter Crystal */
+  --color-accent: #2dd4bf;
+  /* Muted Mint */
+  --color-neutral: #0f172a;
   /* Slate deep */
 
   /* Custom transitions */
@@ -32,5 +32,5 @@
 
 body {
   font-family: var(--font-inter), ui-sans-serif, system-ui;
-  color: #1f2937;
+  color: #0f172a;
 }
