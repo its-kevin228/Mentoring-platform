@@ -24,7 +24,7 @@ export const mentors = [
         company: "Google",
         experience: "5 ans d'expérience",
         tags: ["Clôture de projets", "Soft Skills"],
-        image: "https://i.pravatar.cc/300?u=sarah"
+        image: "/images/ex.jpg"
     },
     {
         name: "kevin gnimdou PEKPELI",
@@ -32,7 +32,7 @@ export const mentors = [
         company: "Airbnb",
         experience: "8 ans d'expérience",
         tags: ["User Discovery", "Figma Expert"],
-        image: "https://i.pravatar.cc/300?u=marc"
+        image: "/images/ex.jpg"
     },
     {
         name: "julien eymard PITO",
@@ -40,7 +40,7 @@ export const mentors = [
         company: "Station F",
         experience: "10 ans d'expérience",
         tags: ["Scalability", "Leadership"],
-        image: "https://i.pravatar.cc/300?u=lea"
+        image: "/images/ex.jpg"
     }
 ];
 
