@@ -1,36 +1,75 @@
 import Link from "next/link";
+import { Twitter, Linkedin, Github, Mail, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="footer p-10 bg-base-200 text-base-content border-t border-base-300">
-            <nav>
-                <h6 className="footer-title opacity-100 font-bold text-primary">Plateforme</h6>
-                <Link href="#problem" className="link link-hover">A propos</Link>
-                <Link href="#how-it-works" className="link link-hover">Fonctionnement</Link>
-                <Link href="#mentors" className="link link-hover">Mentors</Link>
-                <Link href="#faq" className="link link-hover">FAQ</Link>
-            </nav>
-            <nav>
-                <h6 className="footer-title opacity-100 font-bold text-primary">Légal</h6>
-                <Link href="/terms" className="link link-hover">Conditions d'utilisation</Link>
-                <Link href="/privacy" className="link link-hover">Confidentialité</Link>
-                <Link href="/cookies" className="link link-hover">Cookies</Link>
-            </nav>
-            <nav>
-                <h6 className="footer-title opacity-100 font-bold text-primary">Contact</h6>
-                <p className="max-w-xs">Besoin d'aide ? Contactez-nous à support@mentoring.com</p>
-                <div className="grid grid-flow-col gap-4 mt-2">
-                    <Link href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current hover:text-primary transition-colors"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
-                    </Link>
-                    <Link href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current hover:text-primary transition-colors"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg>
-                    </Link>
+        <footer className="bg-base-100 pt-20 pb-10 border-t border-base-200">
+            <div className="container mx-auto px-4 md:px-8">
+                {/* Top Section: Brand & Large Links */}
+                <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-20">
+                    <div className="space-y-6 max-w-sm">
+                        <Link href="/" className="flex items-center gap-3">
+                            <img src="/logo/unimentor.png" alt="UniMentor Logo" className="h-24 w-auto object-contain" />
+                        </Link>
+                        <p className="text-lg text-base-content/60 leading-relaxed font-medium">
+                            La plateforme qui connecte les esprits brillants pour forger l'avenir du travail.
+                        </p>
+                        <div className="flex gap-4 pt-4">
+                            <Link href="#" className="btn btn-ghost btn-circle btn-sm hover:text-primary transition-colors">
+                                <Twitter size={20} />
+                            </Link>
+                            <Link href="#" className="btn btn-ghost btn-circle btn-sm hover:text-primary transition-colors">
+                                <Linkedin size={20} />
+                            </Link>
+                            <Link href="#" className="btn btn-ghost btn-circle btn-sm hover:text-primary transition-colors">
+                                <Github size={20} />
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 lg:gap-24">
+                        <div className="space-y-6">
+                            <p className="text-primary font-bold tracking-widest uppercase text-xs">Produit</p>
+                            <ul className="space-y-4 font-semibold text-base-content/80">
+                                <li><Link href="#problem" className="hover:text-primary transition-colors flex items-center gap-1">Pourquoi nous <ArrowUpRight size={14} /></Link></li>
+                                <li><Link href="#how-it-works" className="hover:text-primary transition-colors flex items-center gap-1">Fonctionnement <ArrowUpRight size={14} /></Link></li>
+                                <li><Link href="#mentors" className="hover:text-primary transition-colors flex items-center gap-1">Nos Mentors <ArrowUpRight size={14} /></Link></li>
+                            </ul>
+                        </div>
+                        <div className="space-y-6">
+                            <p className="text-primary font-bold tracking-widest uppercase text-xs">Support</p>
+                            <ul className="space-y-4 font-semibold text-base-content/80">
+                                <li><Link href="#faq" className="hover:text-primary transition-colors flex items-center gap-1">FAQ <ArrowUpRight size={14} /></Link></li>
+                                <li><Link href="/terms" className="hover:text-primary transition-colors flex items-center gap-1">Conditions <ArrowUpRight size={14} /></Link></li>
+                                <li><Link href="/privacy" className="hover:text-primary transition-colors flex items-center gap-1">Confidentialité <ArrowUpRight size={14} /></Link></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </nav>
-            <aside className="col-span-full text-center pt-8 border-t border-base-300 w-full">
-                <p>© 2026 MENTORPLATFORM - Tous droits réservés.</p>
-            </aside>
+
+                {/* Brand Call to Action (Inspiration Finwise style) */}
+                <div className="bg-base-200 rounded-[2rem] p-8 md:p-12 mb-16 flex flex-col md:flex-row justify-between items-center gap-8 border border-base-300">
+                    <div className="space-y-2 text-center md:text-left">
+                        <p className="text-sm font-bold text-base-content/40 uppercase tracking-widest">Des questions ?</p>
+                        <h3 className="text-2xl md:text-3xl font-black">Besoin d'un accompagnement sur mesure ?</h3>
+                    </div>
+                    <a
+                        href="mailto:contact@mentorplatform.com"
+                        className="text-2xl md:text-4xl font-black text-primary hover:underline flex items-center gap-4 transition-all"
+                    >
+                        <Mail className="w-8 h-8 md:w-10 md:h-10" />
+                        Nous écrire
+                    </a>
+                </div>
+
+                {/* Copyright & Bottom Bar */}
+                <div className="pt-10 border-t border-base-200 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-sm font-bold text-base-content/40">
+                        © 2026 UNIMENTOR. TOUS DROITS RÉSERVÉS.
+                    </p>
+
+                </div>
+            </div>
         </footer>
     );
 }

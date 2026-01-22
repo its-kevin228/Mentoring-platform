@@ -2,25 +2,7 @@
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import { Plus, Minus, Mail } from "lucide-react";
-
-const faqs = [
-    {
-        question: "Comment choisir le bon mentor ?",
-        answer: "Nous vous suggérons des mentors basés sur vos compétences actuelles et vos objectifs futurs. Vous pouvez également parcourir les profils par expertise et lire les témoignages d'autres mentorés."
-    },
-    {
-        question: "Combien de temps durent les sessions ?",
-        answer: "La durée des sessions dépend de ce que vous convenez avec votre mentor. En général, les premières sessions durent entre 45 et 60 minutes."
-    },
-    {
-        question: "Est-ce payant ?",
-        answer: "L'inscription et la consultation des profils sont gratuites. Certains mentors offrent des premières sessions gratuites, tandis que d'autres proposent des tarifs personnalisés pour un accompagnement sur le long terme."
-    },
-    {
-        question: "Puis-je devenir mentor moi-même ?",
-        answer: "Absolument ! Si vous avez au moins 5 ans d'expérience dans votre domaine, vous pouvez postuler pour devenir mentor. Nous vérifions manuellement chaque candidature pour garantir la qualité de la plateforme."
-    }
-];
+import { faqs } from "@/data/landing";
 
 export default function FAQ() {
     return (

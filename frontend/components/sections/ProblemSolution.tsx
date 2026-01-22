@@ -1,24 +1,7 @@
 import { XCircle, CheckCircle2 } from "lucide-react";
+import { problemPoints } from "@/data/landing";
 
 export default function ProblemSolution() {
-    const points = [
-        {
-            problem: "Sensation d'être bloqué dans sa progression.",
-            solution: "Un regard extérieur expert pour débloquer votre potentiel.",
-            icon: "🚀"
-        },
-        {
-            problem: "Difficulté à prendre des décisions stratégiques.",
-            solution: "L'expérience d'un mentor qui a déjà traversé vos défis.",
-            icon: "🎯"
-        },
-        {
-            problem: "Manque de réseau dans votre industrie.",
-            solution: "Accès privilégié à un écosystème de professionnels.",
-            icon: "🤝"
-        }
-    ];
-
     return (
         <section id="problem" className="py-24 bg-base-100">
             <div className="container mx-auto px-4 md:px-8">
@@ -29,7 +12,7 @@ export default function ProblemSolution() {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
-                    {points.map((point, index) => (
+                    {problemPoints.map((point, index) => (
                         <div key={index} className="card bg-base-200 border border-base-300 overflow-hidden hover:shadow-2xl transition-all hover:-translate-y-2 group">
                             <div className="p-8 space-y-6">
                                 <div className="text-4xl bg-white w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">

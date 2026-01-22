@@ -1,32 +1,7 @@
 import { BadgeCheck, MessageCircle } from "lucide-react";
+import { mentors } from "@/data/landing";
 
 export default function FeaturedMentors() {
-    const mentors = [
-        {
-            name: "Dr. Sarah Johnson",
-            role: "Senior Engineering Manager",
-            company: "Google",
-            experience: "12 ans d'expérience",
-            tags: ["Clôture de projets", "Soft Skills"],
-            image: "https://i.pravatar.cc/300?u=sarah"
-        },
-        {
-            name: "Marc Durand",
-            role: "Lead Designer UX/UI",
-            company: "Airbnb",
-            experience: "8 ans d'expérience",
-            tags: ["User Discovery", "Figma Expert"],
-            image: "https://i.pravatar.cc/300?u=marc"
-        },
-        {
-            name: "Léa Morel",
-            role: "CTO & Co-fondatrice",
-            company: "Station F",
-            experience: "10 ans d'expérience",
-            tags: ["Scalability", "Leadership"],
-            image: "https://i.pravatar.cc/300?u=lea"
-        }
-    ];
 
     return (
         <section id="mentors" className="py-24 bg-base-100">
