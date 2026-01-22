@@ -21,7 +21,7 @@ export default function FAQ() {
                             </p>
                             <a
                                 href="mailto:help@mentorplatform.com"
-                                className="inline-flex items-center gap-2 text-2xl md:text-3xl font-bold text-primary hover:underline transition-all"
+                                className="inline-flex items-center gap-2 text-xl md:text-2xl font-bold text-primary hover:underline transition-all"
                             >
                                 <Mail className="w-6 h-6" />
                                 help@mentorplatform.com

@@ -1,34 +1,38 @@
-import Link from "next/link";
-import { Zap } from "lucide-react";
+import { ctaDetails } from "@/data/landing";
+import { AppStoreButton, PlayStoreButton } from "@/components/common/StoreButtons";
 
-export default function MainCTA() {
+const MainCTA: React.FC = () => {
     return (
-        <section className="py-20">
+        <section id="cta" className="mt-10 mb-5 lg:my-20">
             <div className="container mx-auto px-4 md:px-8">
-                <div className="bg-primary rounded-[3rem] p-12 md:p-20 text-primary-content relative overflow-hidden flex flex-col items-center text-center space-y-8 shadow-2xl">
-                    {/* Background Decorative patterns */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl -ml-32 -mb-32"></div>
+                <div className="relative h-full w-full z-10 mx-auto py-12 sm:py-24 overflow-hidden rounded-[3rem]">
+                    <div className="h-full w-full">
+                        {/* Premium Grid Background adapted to brand colors */}
+                        <div className="absolute inset-0 -z-10 h-full w-full bg-[#042f2e] bg-[linear-gradient(to_right,#0f3b39_1px,transparent_1px),linear-gradient(to_bottom,#0f3b39_1px,transparent_1px)] bg-[size:6rem_4rem]">
+                            <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_50%_500px,rgba(45,212,191,0.15),transparent)]"></div>
+                        </div>
 
-                    <Zap className="w-16 h-16 animate-bounce" fill="currentColor" />
+                        <div className="h-full flex flex-col items-center justify-center text-white text-center px-5 space-y-8">
+                            <h2 className="text-3xl sm:text-4xl md:text-6xl md:leading-tight font-black mb-4 max-w-4xl tracking-tight">
+                                {ctaDetails.heading}
+                            </h2>
 
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight max-w-4xl leading-tight">
-                        Prêt à transformer votre avenir professionnel ?
-                    </h2>
+                            <p className="mx-auto max-w-2xl text-lg md:text-xl opacity-80 font-medium">
+                                {ctaDetails.subheading}
+                            </p>
 
-                    <p className="text-xl md:text-2xl opacity-90 max-w-2xl font-medium">
-                        Rejoignez des milliers de professionnels qui progressent chaque jour grâce au mentoring.
-                    </p>
+                            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                                <AppStoreButton />
+                                <PlayStoreButton />
+                            </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                        <Link href="/signup" className="btn btn-neutral btn-lg rounded-full px-12 text-lg shadow-xl shadow-black/20 border-none hover:scale-105 active:scale-95 transition-transform">
-                            S'inscrire gratuitement
-                        </Link>
+                            <p className="text-sm opacity-50 font-bold uppercase tracking-widest pt-4">UniMentor est disponible partout</p>
+                        </div>
                     </div>
-
-                    <p className="text-sm opacity-70">Aucune carte bancaire requise pour démarrer.</p>
                 </div>
             </div>
         </section>
     );
-}
+};
+
+export default MainCTA;

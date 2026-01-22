@@ -17,16 +17,16 @@ export default function Hero() {
                             Propulsez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Carrière</span> avec un Mentor
                         </h1>
 
-                        <p className="text-lg md:text-xl text-base-content/70 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        <p className="text-lg md:text-xl text-base-content/70 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
                             Connectez-vous avec des leaders d'opinion et des experts du secteur pour un accompagnement personnalisé. Atteignez vos objectifs plus rapidement.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                            <Link href="/signup" className="btn btn-primary btn-lg rounded-full px-8 shadow-xl shadow-primary/20 group">
+                            <Link href="/signup" className="btn btn-primary text-white btn-lg rounded-full px-12 shadow-2xl shadow-primary/30 group border-none">
                                 Trouver mon mentor
                                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                             </Link>
-                            <Link href="#how-it-works" className="btn btn-ghost btn-lg rounded-full px-8">
+                            <Link href="#how-it-works" className="btn btn-ghost btn-lg rounded-full px-8 font-bold">
                                 Comment ça marche ?
                             </Link>
                         </div>
@@ -44,7 +44,7 @@ export default function Hero() {
 
                     {/* Image/Visual */}
                     <div className="w-full lg:w-1/2 relative">
-                        <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/50">
+                        <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/50 animate-float">
                             <img
                                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
                                 alt="Mentoring session"

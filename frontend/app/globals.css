@@ -3,8 +3,34 @@
 
 @theme {
   --font-sans: var(--font-inter);
+
+  /* Brand Colors from Logo */
+  --color-primary: #0d9488;
+  /* Teal */
+  --color-secondary: #2dd4bf;
+  /* Mint */
+  --color-accent: #10b981;
+  /* Emerald accent */
+  --color-neutral: #1f2937;
+  /* Slate deep */
+
+  /* Custom transitions */
+  --animate-float: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 body {
   font-family: var(--font-inter), ui-sans-serif, system-ui;
+  color: #1f2937;
 }

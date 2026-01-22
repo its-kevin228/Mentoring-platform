@@ -79,3 +79,8 @@ export const howItWorksSteps = [
         color: "bg-pink-500"
     }
 ];
+
+export const ctaDetails = {
+    heading: "Prêt à transformer votre avenir professionnel ?",
+    subheading: "Rejoignez des milliers de professionnels qui progressent chaque jour grâce au mentoring sur UniMentor."
+};
