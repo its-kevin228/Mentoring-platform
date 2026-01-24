@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { apiRequest } from '@/lib/api';
-import { Search, Filter, BookOpen, GraduationCap, MapPin, MessageCircle, BadgeCheck, Loader2 } from 'lucide-react';
+import { Search, Filter, BookOpen, GraduationCap, MapPin, MessageCircle, BadgeCheck, Loader2, Send, X } from 'lucide-react';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 interface Mentor {
     id: string;
@@ -22,12 +24,20 @@ interface Mentor {
 }
 
 export default function MentorsPage() {
+    const { user } = useAuth();
+    const router = useRouter();
     const [mentors, setMentors] = useState<Mentor[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [filters, setFilters] = useState({
         fieldOfStudy: '',
         institution: '',
     });
+
+    // Modal state
+    const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
+    const [requestMessage, setRequestMessage] = useState('');
+    const [isSending, setIsSending] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     const fetchMentors = async () => {
         setIsLoading(true);
@@ -49,6 +59,38 @@ export default function MentorsPage() {
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         fetchMentors();
+    };
+
+    const handleContactClick = (mentor: Mentor) => {
+        if (!user) {
+            router.push('/login');
+            return;
+        }
+        setSelectedMentor(mentor);
+    };
+
+    const sendMentorshipRequest = async () => {
+        if (!selectedMentor) return;
+        setIsSending(true);
+        try {
+            await apiRequest('/mentorship/request', {
+                method: 'POST',
+                body: JSON.stringify({
+                    mentorId: selectedMentor.id,
+                    message: requestMessage,
+                }),
+            });
+            setSuccessMessage(`Votre demande a été envoyée à ${selectedMentor.firstName} !`);
+            setTimeout(() => {
+                setSelectedMentor(null);
+                setSuccessMessage('');
+                setRequestMessage('');
+            }, 3000);
+        } catch (error: any) {
+            alert(error.message);
+        } finally {
+            setIsSending(false);
+        }
     };
 
     return (
@@ -169,7 +211,10 @@ export default function MentorsPage() {
 
                                     <div className="p-8 pt-0 mt-auto">
                                         <div className="divider opacity-5 my-0 mb-6"></div>
-                                        <button className="btn btn-primary w-full rounded-2xl text-white font-bold group-hover:scale-[1.02] transition-transform">
+                                        <button
+                                            onClick={() => handleContactClick(mentor)}
+                                            className="btn btn-primary w-full rounded-2xl text-white font-bold group-hover:scale-[1.02] transition-transform"
+                                        >
                                             Contacter ce Mentor
                                             <MessageCircle size={18} className="ml-2" />
                                         </button>
@@ -185,6 +230,65 @@ export default function MentorsPage() {
                     )}
                 </div>
             </main>
+
+            {/* Modal de Demande de Mentoring */}
+            {selectedMentor && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-neutral/60 backdrop-blur-sm animate-in fade-in duration-300">
+                    <div className="bg-base-100 w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden border border-base-200 animate-in zoom-in-95 duration-300">
+                        {successMessage ? (
+                            <div className="p-12 text-center space-y-6">
+                                <div className="w-20 h-20 bg-success/10 text-success mx-auto rounded-full flex items-center justify-center">
+                                    <BadgeCheck size={40} />
+                                </div>
+                                <h3 className="text-2xl font-black text-neutral italic">C'est envoyé !</h3>
+                                <p className="text-base-content/60 font-medium">{successMessage}</p>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="bg-primary p-8 text-white relative">
+                                    <button
+                                        onClick={() => setSelectedMentor(null)}
+                                        className="absolute top-6 right-6 p-2 hover:bg-white/20 rounded-full transition-colors"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center font-black text-2xl">
+                                            {selectedMentor.firstName[0]}
+                                        </div>
+                                        <div>
+                                            <p className="text-xs font-black uppercase tracking-widest opacity-70">Demande de mentoring à</p>
+                                            <h3 className="text-2xl font-black italic">{selectedMentor.firstName} {selectedMentor.lastName}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-8 space-y-6">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text font-black uppercase text-[10px] tracking-widest opacity-50">Expliquez votre besoin (Motivation, questions...)</span>
+                                        </label>
+                                        <textarea
+                                            className="textarea textarea-bordered h-32 rounded-2xl bg-base-50/50 border-base-200 focus:border-primary transition-all font-medium text-sm leading-relaxed"
+                                            placeholder="Bonjour, j'aimerais échanger avec vous car..."
+                                            value={requestMessage}
+                                            onChange={(e) => setRequestMessage(e.target.value)}
+                                        ></textarea>
+                                    </div>
+                                    <button
+                                        onClick={sendMentorshipRequest}
+                                        disabled={isSending || !requestMessage}
+                                        className="btn btn-primary w-full rounded-2xl text-white font-bold h-14 shadow-lg shadow-primary/20"
+                                    >
+                                        {isSending ? <Loader2 className="animate-spin" /> : (
+                                            <> Envoyer ma demande <Send size={18} className="ml-2" /> </>
+                                        )}
+                                    </button>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                </div>
+            )}
 
             <Footer />
         </div>

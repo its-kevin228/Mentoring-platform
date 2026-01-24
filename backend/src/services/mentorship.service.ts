@@ -11,7 +11,7 @@ export class MentorshipService {
         message?: string;
     }) {
         // Vérifier si une demande est déjà en attente entre ces deux utilisateurs
-        const existingRequest = await prisma.mentorship_request.findFirst({
+        const existingRequest = await prisma.mentorshipRequest.findFirst({
             where: {
                 mentorId: data.mentorId,
                 mentoreId: data.mentoreId,
@@ -32,7 +32,7 @@ export class MentorshipService {
             throw new Error('L’utilisateur sélectionné n’est pas un mentor');
         }
 
-        return prisma.mentorship_request.create({
+        return prisma.mentorshipRequest.create({
             data: {
                 mentorId: data.mentorId,
                 mentoreId: data.mentoreId,
@@ -54,7 +54,7 @@ export class MentorshipService {
      * Récupère les demandes reçues (pour un mentor)
      */
     static async getReceivedRequests(mentorId: string) {
-        return prisma.mentorship_request.findMany({
+        return prisma.mentorshipRequest.findMany({
             where: { mentorId },
             include: {
                 mentore: {
@@ -71,7 +71,7 @@ export class MentorshipService {
      * Récupère les demandes envoyées (pour un mentoré)
      */
     static async getSentRequests(mentoreId: string) {
-        return prisma.mentorship_request.findMany({
+        return prisma.mentorshipRequest.findMany({
             where: { mentoreId },
             include: {
                 mentor: {
@@ -88,7 +88,7 @@ export class MentorshipService {
      * Met à jour le statut d'une demande (Accepter/Refuser)
      */
     static async updateRequestStatus(requestId: string, userId: string, status: RequestStatus) {
-        const request = await prisma.mentorship_request.findUnique({
+        const request = await prisma.mentorshipRequest.findUnique({
             where: { id: requestId }
         });
 
@@ -101,7 +101,7 @@ export class MentorshipService {
             throw new Error('Non autorisé à modifier cette demande');
         }
 
-        return prisma.mentorship_request.update({
+        return prisma.mentorshipRequest.update({
             where: { id: requestId },
             data: { status },
         });

@@ -9,6 +9,7 @@ import { ApiResponse } from './types';
 // Import des routes
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
+import mentorshipRoutes from './routes/mentorship.routes';
 // import mentorRoutes from './routes/mentor.routes';
 
 class App {
@@ -71,6 +72,7 @@ class App {
     // Routes principales
     this.app.use('/api/auth', authRoutes);
     this.app.use('/api/users', userRoutes);
+    this.app.use('/api/mentorship', mentorshipRoutes);
     // this.app.use('/api/mentors', mentorRoutes);
 
     // Route 404
