@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { UserService } from '../services/user.service';
 import { ApiResponse } from '../types';
+import { AuthRequest } from '../middleware/auth.middleware';
 
 export class UserController {
     /**
@@ -55,6 +56,31 @@ export class UserController {
             return res.status(500).json({
                 success: false,
                 error: "Erreur lors de la récupération du profil",
+            });
+        }
+    }
+
+    /**
+     * Handler pour mettre à jour son propre profil
+     */
+    static async updateMyProfile(req: AuthRequest, res: Response) {
+        try {
+            const userId = req.user!.id;
+            const profileData = req.body;
+
+            const updatedProfile = await UserService.updateProfile(userId, profileData);
+
+            const response: ApiResponse<typeof updatedProfile> = {
+                success: true,
+                data: updatedProfile,
+                message: "Profil mis à jour avec succès",
+            };
+
+            return res.status(200).json(response);
+        } catch (error: any) {
+            return res.status(400).json({
+                success: false,
+                error: "Erreur lors de la mise à jour du profil",
             });
         }
     }

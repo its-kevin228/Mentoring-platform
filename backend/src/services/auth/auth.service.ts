@@ -32,6 +32,7 @@ export class AuthService {
                     firstName: userData.firstName,
                     lastName: userData.lastName,
                     role: userData.role,
+                    isVerified: true, // Automatiquement vérifié pour le MVP
                 },
             });
 

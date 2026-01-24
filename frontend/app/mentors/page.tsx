@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { apiRequest } from '@/lib/api';
-import { Search, Filter, BookOpen, GraduationCap, MapPin, MessageCircle, BadgeCheck, Loader2, Send, X } from 'lucide-react';
+import { Search, Filter, BookOpen, GraduationCap, MapPin, MessageCircle, BadgeCheck, Loader2, Send, X, Tags, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -52,6 +52,22 @@ export default function MentorsPage() {
         }
     };
 
+    const suggestedMentors = user?.role === 'MENTORE'
+        ? mentors.filter(m => m.profile.fieldOfStudy === user.firstName) // Simulation: on devrait avoir la filière du user
+        : [];
+
+    // En fait, on devrait charger le profil complet du user pour avoir sa filière
+    const [userProfile, setUserProfile] = useState<any>(null);
+    useEffect(() => {
+        if (user) {
+            apiRequest<any>(`/users/${user.id}`).then(data => setUserProfile(data.profile));
+        }
+    }, [user]);
+
+    const realSuggested = mentors.filter(m =>
+        userProfile?.fieldOfStudy && m.profile.fieldOfStudy === userProfile.fieldOfStudy && m.id !== user?.id
+    );
+
     useEffect(() => {
         fetchMentors();
     }, []);
@@ -98,6 +114,36 @@ export default function MentorsPage() {
             <Navbar />
 
             <main className="flex-grow">
+                {/* Section Suggérée pour les Mentorés */}
+                {user?.role === 'MENTORE' && realSuggested.length > 0 && (
+                    <section className="bg-base-200/50 py-10 border-b border-base-200">
+                        <div className="container mx-auto px-4 md:px-8">
+                            <h2 className="text-xl font-black text-neutral mb-6 flex items-center gap-2">
+                                <Tags size={20} className="text-primary" />
+                                Suggérés pour votre filière ({userProfile?.fieldOfStudy})
+                            </h2>
+                            <div className="flex gap-6 overflow-x-auto pb-6 -mx-4 px-4 snap-x">
+                                {realSuggested.map(m => (
+                                    <div key={m.id} className="min-w-[300px] snap-start">
+                                        <div className="bg-base-100 p-6 rounded-[2rem] border border-primary/20 shadow-lg shadow-primary/5 flex items-center gap-4 hover:border-primary transition-all">
+                                            <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-black">
+                                                {m.firstName[0]}
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="font-bold text-neutral leading-tight">{m.firstName} {m.lastName}</p>
+                                                <p className="text-[10px] font-black text-primary uppercase">{m.profile.studyLevel}</p>
+                                            </div>
+                                            <button onClick={() => setSelectedMentor(m)} className="btn btn-primary btn-sm btn-circle text-white">
+                                                <ChevronRight size={18} />
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                )}
+
                 {/* Search Header */}
                 <section className="bg-primary/5 py-12 border-b border-base-200">
                     <div className="container mx-auto px-4 md:px-8">

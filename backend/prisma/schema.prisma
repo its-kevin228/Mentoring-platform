@@ -63,6 +63,9 @@ model Profile {
   academicPath     String?  @map("academic_path")
   skills           String[] 
   availabilityInfo String?  @map("availability_info")
+  isAvailable      Boolean  @default(true) @map("is_available")
+  objectives       String?
+  difficulties     String?
   isActive         Boolean  @default(true) @map("is_active")
 
   @@map("profiles")

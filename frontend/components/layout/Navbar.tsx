@@ -23,7 +23,8 @@ export default function Navbar() {
                         {user ? (
                             <>
                                 <li><Link href="/dashboard">Tableau de bord</Link></li>
-                                <li><Link href="/mentors">Trouver un Mentor</Link></li>
+                                {user.role === 'MENTORE' && <li><Link href="/mentors">Trouver un Mentor</Link></li>}
+                                <li><Link href="/requests">{user.role === 'MENTOR' ? 'Mes Mentorés' : 'Mes Demandes'}</Link></li>
                                 <li><Link href="/messages">Messages</Link></li>
                             </>
                         ) : (
@@ -51,10 +52,18 @@ export default function Navbar() {
                                     Dashboard
                                 </Link>
                             </li>
+                            {user.role === 'MENTORE' && (
+                                <li>
+                                    <Link href="/mentors" className={pathname === '/mentors' ? 'text-primary' : ''}>
+                                        <Users size={18} />
+                                        Annuaire
+                                    </Link>
+                                </li>
+                            )}
                             <li>
-                                <Link href="/mentors" className={pathname === '/mentors' ? 'text-primary' : ''}>
+                                <Link href="/requests" className={pathname === '/requests' ? 'text-primary' : ''}>
                                     <Users size={18} />
-                                    Annuaire
+                                    {user.role === 'MENTOR' ? 'Mes Mentorés' : 'Demandes'}
                                 </Link>
                             </li>
                             <li>

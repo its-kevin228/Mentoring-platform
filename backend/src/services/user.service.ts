@@ -16,6 +16,7 @@ export class UserService {
                 isVerified: true, // Optionnel : ne montrer que les vérifiés ? on peut laisser true par défaut pour la qualité
                 profile: {
                     isActive: true,
+                    isAvailable: true, // Seuls les mentors disponibles sont visibles
                     // Application des filtres si présents
                     ...(filters.fieldOfStudy && { fieldOfStudy: { contains: filters.fieldOfStudy, mode: 'insensitive' } }),
                     ...(filters.institution && { institution: { contains: filters.institution, mode: 'insensitive' } }),
@@ -52,5 +53,26 @@ export class UserService {
 
         const { passwordHash, ...userWithoutPassword } = user;
         return userWithoutPassword;
+    }
+
+    /**
+     * Met à jour le profil académique d'un utilisateur
+     */
+    static async updateProfile(userId: string, profileData: {
+        institution?: string;
+        fieldOfStudy?: string;
+        studyLevel?: string;
+        bio?: string;
+        academicPath?: string;
+        skills?: string[];
+        isActive?: boolean;
+        isAvailable?: boolean;
+        objectives?: string;
+        difficulties?: string;
+    }) {
+        return prisma.profile.update({
+            where: { userId },
+            data: profileData,
+        });
     }
 }
