@@ -19,29 +19,26 @@ export const faqs = [
 
 export const mentors = [
     {
-        name: "Amandine LEROY",
-        role: "Étudiante en Master 2 Droit Public",
-        company: "Université Paris Panthéon-Assas",
-        experience: "3 mentorés accompagnés",
-        tags: ["Droit", "Concours", "Méthodologie"],
-        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Amandine"
-    },
+        name: "BOGUE Armel",
+        role: "Étudiante en Licence3 Génie logiciel et Système d'information",
+        company: "Institut Africain d'Informatique",
+        experience: "Développeur depuis 3 ans",
+        tags: ["IA", "Applications", "UI/UX"],
+        image: "https://i.pinimg.com/1200x/3e/f3/50/3ef350dc86cc82a092463e5d795654b5.jpg" },
     {
-        name: "Thomas DUBOIS",
-        role: "Doctorant en Intelligence Artificielle",
-        company: "Sorbonne Université",
+        name: "MABALO Parfait",
+        role: "Étudiant en Droit Licence 3",
+        company: "Université de Lomé FDD",
         experience: "5 ans d'études supérieures",
-        tags: ["Informatique", "Recherche", "Mathématiques"],
-        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Thomas"
-    },
+        tags: ["Droit", "Recherche", "Mathématiques"],
+        image: "https://i.pinimg.com/1200x/bb/6a/ef/bb6aef8c1bd48cd8b3b41725eaba18e3.jpg"},
     {
-        name: "Sarah BENALI",
-        role: "Étudiante en L3 Économie & Gestion",
-        company: "Université de Lille",
+        name: "Ayaba ATTIOGBE",
+        role: "Oratrice | Ingénieur | UI/UX designer",
+        company: "Institut Africain d'Informatique",
         experience: "Active depuis 1 an",
-        tags: ["Gestion", "Vie Associative", "Bourses"],
-        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
-    }
+        tags: ["oratoire", "ingénieur", "designer"],
+        image: "https://i.pinimg.com/736x/20/1f/eb/201feb8e95cd036fe805e9c8f3de7bc2.jpg" }
 ];
 
 export const problemPoints = [

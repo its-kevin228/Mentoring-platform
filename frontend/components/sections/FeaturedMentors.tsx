@@ -1,4 +1,4 @@
-import { BadgeCheck, MessageCircle } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 import { mentors } from "@/data/landing";
 
 export default function FeaturedMentors() {
@@ -44,9 +44,6 @@ export default function FeaturedMentors() {
 
                                 <div className="card-actions justify-between items-center mt-2">
                                     <span className="text-xs font-bold text-base-content/50 uppercase tracking-widest">{mentor.experience}</span>
-                                    <button className="btn btn-ghost btn-sm btn-circle group-hover:bg-primary group-hover:text-white transition-colors">
-                                        <MessageCircle size={18} />
-                                    </button>
                                 </div>
                             </div>
                         </div>

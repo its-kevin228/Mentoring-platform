@@ -52,10 +52,6 @@ export default function MentorsPage() {
         }
     };
 
-    const suggestedMentors = user?.role === 'MENTORE'
-        ? mentors.filter(m => m.profile.fieldOfStudy === user.firstName) // Simulation: on devrait avoir la filière du user
-        : [];
-
     // En fait, on devrait charger le profil complet du user pour avoir sa filière
     const [userProfile, setUserProfile] = useState<any>(null);
     useEffect(() => {
@@ -291,20 +287,36 @@ export default function MentorsPage() {
                             </div>
                         ) : (
                             <>
-                                <div className="bg-primary p-8 text-white relative">
+                                <div className="p-8 relative bg-primary/[0.03] border-b border-base-200 overflow-hidden">
+                                    {/* Motif de fond décoratif (Points - Plus visibles) */}
+                                    <div className="absolute inset-0 pointer-events-none opacity-60">
+                                        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                            <defs>
+                                                <pattern id="modalDots" width="24" height="24" patternUnits="userSpaceOnUse">
+                                                    <circle cx="2" cy="2" r="1.5" fill="currentColor" className="text-primary/40" />
+                                                </pattern>
+                                            </defs>
+                                            <rect width="100%" height="100%" fill="url(#modalDots)" />
+                                        </svg>
+                                    </div>
+
                                     <button
                                         onClick={() => setSelectedMentor(null)}
-                                        className="absolute top-6 right-6 p-2 hover:bg-white/20 rounded-full transition-colors"
+                                        className="absolute top-6 right-6 p-2 hover:bg-base-100 rounded-full transition-colors z-20 text-base-content/30 hover:text-error"
                                     >
                                         <X size={20} />
                                     </button>
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center font-black text-2xl">
-                                            {selectedMentor.firstName[0]}
+                                    <div className="flex items-center gap-4 relative z-10">
+                                        <div className="w-16 h-16 rounded-2xl bg-primary/5 border border-primary/10 text-primary flex items-center justify-center font-black text-2xl shadow-sm overflow-hidden">
+                                            {selectedMentor.avatarUrl ? (
+                                                <img src={selectedMentor.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                                            ) : (
+                                                selectedMentor.firstName[0]
+                                            )}
                                         </div>
                                         <div>
-                                            <p className="text-xs font-black uppercase tracking-widest opacity-70">Demande de mentoring à</p>
-                                            <h3 className="text-2xl font-black italic">{selectedMentor.firstName} {selectedMentor.lastName}</h3>
+                                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/50 mb-1">Candidature de mentoring</p>
+                                            <h3 className="text-2xl font-black italic text-neutral">{selectedMentor.firstName} {selectedMentor.lastName}</h3>
                                         </div>
                                     </div>
                                 </div>

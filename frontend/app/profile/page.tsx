@@ -239,6 +239,7 @@ export default function ProfilePage() {
                                             onChange={(e) => setProfile({ ...profile, studyLevel: e.target.value })}
                                         >
                                             <option value="">Sélectionner votre niveau</option>
+                                            <option value="Lycéen">Lycéen</option>
                                             <option value="L1">Licence 1 (L1)</option>
                                             <option value="L2">Licence 2 (L2)</option>
                                             <option value="L3">Licence 3 (L3)</option>

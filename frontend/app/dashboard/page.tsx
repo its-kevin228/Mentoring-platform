@@ -104,15 +104,15 @@ export default function DashboardPage() {
                     />
                     <StatCard
                         icon={<Calendar className="text-pink-500" />}
-                        title="Sessions"
+                        title="Prochains RDV"
                         value="0"
-                        trend="Prochainement"
+                        trend="Bientôt"
                     />
                     <StatCard
                         icon={<TrendingUp className="text-emerald-500" />}
-                        title="Progression"
-                        value="10%"
-                        trend="Profil"
+                        title="Statut"
+                        value={user.isVerified ? "Vérifié" : "En attente"}
+                        trend="Badge"
                     />
                 </div>
 
@@ -153,9 +153,9 @@ export default function DashboardPage() {
                                 </div>
                             ) : (
                                 <div className="text-center py-10 space-y-4 bg-base-50 rounded-3xl border border-dashed border-base-200">
-                                    <p className="text-base-content/40 font-medium">Vous n'avez aucune demande pour le moment.</p>
+                                    <p className="text-base-content/40 font-medium">Vous n'avez pas de sessions actives pour le moment.</p>
                                     {!isMentor && (
-                                        <Link href="/mentors" className="btn btn-primary btn-sm rounded-full px-6">Trouver un mentor</Link>
+                                        <Link href="/mentors" className="btn btn-primary btn-sm rounded-full px-6">Envoyer ma première demande</Link>
                                     )}
                                 </div>
                             )}
@@ -164,40 +164,30 @@ export default function DashboardPage() {
                         <div className="bg-base-100 p-8 rounded-[2.5rem] shadow-xl shadow-base-300/20 border border-base-200">
                             <h3 className="text-xl font-black text-neutral mb-6 flex items-center gap-2">
                                 <BookOpen size={22} className="text-primary" />
-                                {isMentor ? "Conseils de Coaching" : "Mes Objectifs & Difficultés"}
+                                {isMentor ? "Notes de Coaching" : "Mes Objectifs & Besoins"}
                             </h3>
 
                             {!isMentor ? (
                                 <div className="space-y-4">
                                     <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10">
                                         <p className="text-[10px] font-black text-primary uppercase mb-1">Objectifs</p>
-                                        <p className="text-sm font-medium text-neutral leading-relaxed">
-                                            {profile?.objectives || "Aucun objectif défini. Modifiez votre profil pour en ajouter."}
+                                        <p className="text-xs font-medium text-neutral leading-relaxed">
+                                            {profile?.objectives || "Aucun objectif défini."}
                                         </p>
                                     </div>
                                     <div className="p-4 bg-error/5 rounded-2xl border border-error/10">
                                         <p className="text-[10px] font-black text-error uppercase mb-1">Difficultés</p>
-                                        <p className="text-sm font-medium text-neutral leading-relaxed">
-                                            {profile?.difficulties || "Aucune difficulté listée. Modifiez votre profil pour préciser vos besoins."}
+                                        <p className="text-xs font-medium text-neutral leading-relaxed">
+                                            {profile?.difficulties || "Aucune difficulté listée."}
                                         </p>
                                     </div>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <ResourceSmallCard title="Comment motiver un étudiant en difficulté" category="Pédagogie" />
-                                    <ResourceSmallCard title="Structurer sa première séance de mentoring" category="Méthodologie" />
+                                <div className="text-center py-6">
+                                    <p className="text-xs font-medium text-base-content/40">Vous n'avez pas encore renseigné de notes sur votre approche pédagogique.</p>
+                                    <Link href="/profile" className="btn btn-primary btn-sm rounded-xl mt-4">Compléter mon profil</Link>
                                 </div>
                             )}
-                        </div>
-                        <div className="bg-base-100 p-8 rounded-[2.5rem] shadow-xl shadow-base-300/20 border border-base-200">
-                            <h3 className="text-xl font-black text-neutral mb-6 flex items-center gap-2">
-                                <BookOpen size={22} className="text-primary" />
-                                Ressources suggérées
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <ResourceSmallCard title="Méthodologie : La prise de notes en amphi" category="Orientation" />
-                                <ResourceSmallCard title="Guide : Gérer son budget étudiant" category="Vie Étudiante" />
-                            </div>
                         </div>
                     </div>
 
