@@ -69,10 +69,22 @@ export class UserService {
         isAvailable?: boolean;
         objectives?: string;
         difficulties?: string;
+        avatarUrl?: string;
     }) {
+        const { avatarUrl, ...rest } = profileData;
+
+        // Mise à jour de l'avatar sur l'User si présent
+        if (avatarUrl !== undefined) {
+            await prisma.user.update({
+                where: { id: userId },
+                data: { avatarUrl },
+            });
+        }
+
+        // Mise à jour du reste sur le Profile
         return prisma.profile.update({
             where: { userId },
-            data: profileData,
+            data: rest,
         });
     }
 }

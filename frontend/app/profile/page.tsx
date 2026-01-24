@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 export default function ProfilePage() {
-    const { user, isLoading: authLoading } = useAuth();
+    const { user, isLoading: authLoading, updateUser } = useAuth();
     const [profile, setProfile] = useState({
         institution: '',
         fieldOfStudy: '',
@@ -29,6 +29,7 @@ export default function ProfilePage() {
         objectives: '',
         difficulties: '',
         academicPath: '',
+        avatarUrl: '',
     });
     const [skillInput, setSkillInput] = useState('');
     const [isUpdating, setIsUpdating] = useState(false);
@@ -39,19 +40,18 @@ export default function ProfilePage() {
             if (user) {
                 try {
                     const data = await apiRequest<any>(`/users/${user.id}`);
-                    if (data.profile) {
-                        setProfile({
-                            institution: data.profile.institution || '',
-                            fieldOfStudy: data.profile.fieldOfStudy || '',
-                            studyLevel: data.profile.studyLevel || '',
-                            bio: data.profile.bio || '',
-                            skills: data.profile.skills || [],
-                            isAvailable: data.profile.isAvailable ?? true,
-                            objectives: data.profile.objectives || '',
-                            difficulties: data.profile.difficulties || '',
-                            academicPath: data.profile.academicPath || '',
-                        });
-                    }
+                    setProfile({
+                        institution: data.profile?.institution || '',
+                        fieldOfStudy: data.profile?.fieldOfStudy || '',
+                        studyLevel: data.profile?.studyLevel || '',
+                        bio: data.profile?.bio || '',
+                        skills: data.profile?.skills || [],
+                        isAvailable: data.profile?.isAvailable ?? true,
+                        objectives: data.profile?.objectives || '',
+                        difficulties: data.profile?.difficulties || '',
+                        academicPath: data.profile?.academicPath || '',
+                        avatarUrl: data.avatarUrl || '',
+                    });
                 } catch (error) {
                     console.error('Erreur lors du chargement du profil:', error);
                 }
@@ -69,6 +69,10 @@ export default function ProfilePage() {
                 method: 'PATCH',
                 body: JSON.stringify(profile),
             });
+
+            // Mise à jour du state global pour que l'avatar change partout
+            updateUser({ avatarUrl: profile.avatarUrl });
+
             setStatus({ type: 'success', message: 'Profil mis à jour avec succès !' });
             setTimeout(() => setStatus(null), 3000);
         } catch (error: any) {
@@ -104,38 +108,78 @@ export default function ProfilePage() {
                 <div className="max-w-4xl mx-auto">
 
                     <div className="bg-base-100 rounded-[3rem] shadow-2xl shadow-base-300/30 overflow-hidden border border-base-200">
-                        {/* Header Profil */}
-                        <div className="bg-primary p-12 text-white relative">
+                        {/* Header Profil - Motif bleu plus visible */}
+                        <div className="relative p-12 border-b border-base-100 overflow-hidden bg-primary/[0.02]">
+                            {/* Motif de fond décoratif (Points géométriques) */}
+                            <div className="absolute inset-0 pointer-events-none">
+                                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <pattern id="dotPattern" width="24" height="24" patternUnits="userSpaceOnUse">
+                                            <circle cx="2" cy="2" r="1" fill="currentColor" className="text-primary/20" />
+                                        </pattern>
+                                    </defs>
+                                    <rect width="100%" height="100%" fill="url(#dotPattern)" />
+                                </svg>
+                                {/* Effet de dégradé pour adoucir le motif */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/60"></div>
+                            </div>
+
                             <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
-                                <div className="w-32 h-32 rounded-[2.5rem] bg-white/20 backdrop-blur-md flex items-center justify-center font-black text-5xl shadow-2xl">
-                                    {user.firstName[0]}{user.lastName[0]}
+                                <div className="group relative">
+                                    <div className="w-32 h-32 rounded-[2.5rem] bg-white border-2 border-primary/20 flex items-center justify-center font-black text-5xl shadow-xl overflow-hidden relative">
+                                        {profile.avatarUrl ? (
+                                            <img src={profile.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                                        ) : (
+                                            <User size={64} className="text-primary/40" />
+                                        )}
+
+                                        <label className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-white p-4">
+                                            <Save size={20} className="mb-1" />
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-center">Changer la photo</span>
+                                            <input
+                                                type="file"
+                                                className="hidden"
+                                                accept="image/*"
+                                                onChange={(e) => {
+                                                    const file = e.target.files?.[0];
+                                                    if (file) {
+                                                        const reader = new FileReader();
+                                                        reader.onloadend = () => {
+                                                            setProfile({ ...profile, avatarUrl: reader.result as string });
+                                                        };
+                                                        reader.readAsDataURL(file);
+                                                    }
+                                                }}
+                                            />
+                                        </label>
+                                    </div>
                                 </div>
-                                <div className="text-center md:text-left space-y-2">
-                                    <p className="text-xs font-black uppercase tracking-[0.2em] opacity-70">Profil Académique</p>
-                                    <h1 className="text-4xl font-black italic">{user.firstName} {user.lastName}</h1>
-                                    <div className="flex flex-wrap justify-center md:justify-start gap-3 pt-2">
-                                        <span className="badge badge-secondary font-bold px-4 py-3 rounded-xl border-none">{user.role}</span>
-                                        <span className="badge bg-white/20 text-white font-bold px-4 py-3 rounded-xl border-none backdrop-blur-md">
-                                            {user.email}
-                                        </span>
+
+                                <div className="text-center md:text-left space-y-3 flex-1">
+                                    <div className="space-y-1">
+                                        <p className="text-[10px] font-black uppercase text-primary tracking-[0.2em]">Mon Compte</p>
+                                        <h1 className="text-4xl font-black text-neutral italic">{user.firstName} {user.lastName}</h1>
+                                    </div>
+
+                                    <div className="flex flex-wrap justify-center md:justify-start gap-3 items-center">
+                                        <span className="badge badge-primary font-bold px-4 py-3 rounded-xl border-none text-white shadow-lg shadow-primary/20">{user.role}</span>
+                                        <span className="text-sm font-medium text-base-content/50">{user.email}</span>
+
                                         {user.role === 'MENTOR' && (
-                                            <div className="flex items-center gap-2 ml-2">
+                                            <div className="flex items-center gap-2 ml-4 bg-white/50 backdrop-blur-md px-4 py-2 rounded-2xl border border-primary/10 shadow-sm">
                                                 <input
                                                     type="checkbox"
                                                     className="toggle toggle-success toggle-sm"
                                                     checked={profile.isAvailable}
                                                     onChange={(e) => setProfile({ ...profile, isAvailable: e.target.checked })}
                                                 />
-                                                <span className="text-xs font-black uppercase tracking-widest">
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-primary">
                                                     {profile.isAvailable ? 'Disponible' : 'Occupé'}
                                                 </span>
                                             </div>
                                         )}
                                     </div>
                                 </div>
-                            </div>
-                            <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-                                <User size={200} />
                             </div>
                         </div>
 

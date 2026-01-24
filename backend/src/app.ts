@@ -39,15 +39,22 @@ class App {
     // Rate limiting
     const limiter = rateLimit({
       windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 100, // Limite chaque IP à 100 requêtes par fenêtre
-      message: 'Trop de requêtes depuis cette IP, veuillez réessayer plus tard.',
+      max: 500, // Augmenté pour les tests et éviter les blocages
+      standardHeaders: true,
+      legacyHeaders: false,
+      handler: (req, res) => {
+        res.status(429).json({
+          success: false,
+          error: 'Trop de requêtes depuis cette IP, veuillez réessayer plus tard.'
+        });
+      }
     });
 
     this.app.use('/api/', limiter);
 
     // Body parsing
-    this.app.use(express.json());
-    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(express.json({ limit: '10mb' }));
+    this.app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
     // Logging (basique)
     this.app.use((req: Request, res: Response, next: NextFunction) => {

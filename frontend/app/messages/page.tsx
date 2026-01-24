@@ -162,9 +162,15 @@ export default function MessagesPage() {
                                             : 'hover:bg-base-50'
                                             }`}
                                     >
-                                        <div className="avatar placeholder">
-                                            <div className={`w-12 h-12 rounded-xl border-2 ${activeChat?.user.id === conv.user.id ? 'border-white/20 bg-white/10' : 'border-primary/10 bg-primary/5 text-primary'} flex items-center justify-center font-black`}>
-                                                {conv.user.firstName[0]}
+                                        <div className="avatar">
+                                            <div className={`w-12 h-12 rounded-xl border-2 overflow-hidden ${activeChat?.user.id === conv.user.id ? 'border-white/20' : 'border-primary/10'} flex items-center justify-center`}>
+                                                {conv.user.avatarUrl ? (
+                                                    <img src={conv.user.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                                                ) : (
+                                                    <div className={`w-full h-full flex items-center justify-center font-black ${activeChat?.user.id === conv.user.id ? 'bg-white/10 text-white' : 'bg-primary/5 text-primary'}`}>
+                                                        {conv.user.firstName[0]}
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                         <div className="flex-1 min-w-0">
@@ -202,8 +208,12 @@ export default function MessagesPage() {
                                         <button onClick={() => setActiveChat(null)} className="lg:hidden btn btn-ghost btn-sm btn-circle">
                                             <Paperclip />
                                         </button>
-                                        <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-black text-sm">
-                                            {activeChat.user.firstName[0]}
+                                        <div className="w-10 h-10 rounded-xl overflow-hidden border border-primary/10 bg-primary/5 flex items-center justify-center">
+                                            {activeChat.user.avatarUrl ? (
+                                                <img src={activeChat.user.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                                            ) : (
+                                                <span className="font-black text-primary text-sm">{activeChat.user.firstName[0]}</span>
+                                            )}
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-neutral leading-tight text-sm">{activeChat.user.firstName} {activeChat.user.lastName}</h3>
@@ -234,8 +244,17 @@ export default function MessagesPage() {
                                                         </span>
                                                     </div>
                                                 )}
-                                                <div className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
-                                                    <div className={`max-w-[70%] space-y-1 ${isMe ? 'items-end' : 'items-start'}`}>
+                                                <div className={`flex gap-3 items-end ${isMe ? 'flex-row-reverse' : 'flex-row'}`}>
+                                                    <div className="avatar shrink-0 mb-5">
+                                                        <div className="w-8 h-8 rounded-lg overflow-hidden border border-base-200 bg-base-100 flex items-center justify-center">
+                                                            {isMe ? (
+                                                                user.avatarUrl ? <img src={user.avatarUrl} alt="Me" className="w-full h-full object-cover" /> : <span className="text-[10px] font-black text-primary">{user.firstName[0]}</span>
+                                                            ) : (
+                                                                activeChat.user.avatarUrl ? <img src={activeChat.user.avatarUrl} alt="Other" className="w-full h-full object-cover" /> : <span className="text-[10px] font-black text-primary">{activeChat.user.firstName[0]}</span>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                    <div className={`max-w-[85%] space-y-1 ${isMe ? 'items-end' : 'items-start'}`}>
                                                         <div className={`p-4 rounded-[1.5rem] text-sm font-medium shadow-sm transition-all ${isMe
                                                             ? 'bg-primary text-white rounded-tr-none shadow-primary/10'
                                                             : 'bg-white text-neutral rounded-tl-none border border-base-200'

@@ -92,9 +92,13 @@ export default function Navbar() {
                                 <p className="text-[10px] font-black uppercase opacity-60 tracking-tighter leading-none">{user.role}</p>
                                 <p className="text-sm font-bold leading-tight">{user.firstName}</p>
                             </div>
-                            <div className="avatar placeholder">
-                                <div className="bg-primary text-primary-content rounded-full w-8">
-                                    <span className="text-xs font-bold">{user.firstName[0]}{user.lastName[0]}</span>
+                            <div className="avatar">
+                                <div className="bg-primary text-primary-content rounded-full w-8 overflow-hidden">
+                                    {user.avatarUrl ? (
+                                        <img src={user.avatarUrl} alt="Profil" className="w-full h-full object-cover" />
+                                    ) : (
+                                        <span className="text-xs font-bold">{user.firstName[0]}{user.lastName[0]}</span>
+                                    )}
                                 </div>
                             </div>
                         </div>
