@@ -1,86 +1,86 @@
 export const faqs = [
     {
-        question: "Comment choisir le bon mentor ?",
-        answer: "Nous vous suggérons des mentors basés sur vos compétences actuelles et vos objectifs futurs. Vous pouvez également parcourir les profils par expertise et lire les témoignages d'autres mentorés."
+        question: "Comment choisir le bon mentor académique ?",
+        answer: "Nous vous suggérons des mentors basés sur la filière que vous visez (Droit, PACES, Éco-Gestion, etc.). Vous pouvez filtrer par établissement pour avoir un retour concret sur l'université qui vous intéresse."
     },
     {
-        question: "Combien de temps durent les sessions ?",
-        answer: "La durée des sessions dépend de ce que vous convenez avec votre mentor. En général, les premières sessions durent entre 45 et 60 minutes."
+        question: "Le mentoring est-il gratuit pour les lycéens ?",
+        answer: "Oui, l'accès à la plateforme et la mise en relation avec des étudiants mentors est entièrement gratuite. Notre mission est de favoriser l'égalité des chances dans l'accès au supérieur."
     },
     {
-        question: "Est-ce payant ?",
-        answer: "L'inscription et la consultation des profils sont gratuites. Certains mentors offrent des premières sessions gratuites, tandis que d'autres proposent des tarifs personnalisés pour un accompagnement sur le long terme."
+        question: "Quels types de questions puis-je poser ?",
+        answer: "Tout ce qui concerne la vie académique : méthodes de révision, organisation du temps, choix d'options, ambiance dans l'établissement ou encore les débouchés après la licence."
     },
     {
-        question: "Puis-je devenir mentor moi-même ?",
-        answer: "Absolument ! Si vous avez au moins 5 ans d'expérience dans votre domaine, vous pouvez postuler pour devenir mentor. Nous vérifions manuellement chaque candidature pour garantir la qualité de la plateforme."
+        question: "Comment devenir mentor ?",
+        answer: "Si vous êtes en L3, Master ou Doctorat, vous pouvez créer un profil mentor. Une vérification de votre statut étudiant sera effectuée via votre adresse email institutionnelle."
     }
 ];
 
 export const mentors = [
     {
-        name: "Armel komlan BOGUE",
-        role: "Senior Fullstack developer",
-        company: "Google",
-        experience: "5 ans d'expérience",
-        tags: ["Clôture de projets", "Soft Skills"],
-        image: "/images/ex.jpg"
+        name: "Amandine LEROY",
+        role: "Étudiante en Master 2 Droit Public",
+        company: "Université Paris Panthéon-Assas",
+        experience: "3 mentorés accompagnés",
+        tags: ["Droit", "Concours", "Méthodologie"],
+        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Amandine"
     },
     {
-        name: "kevin gnimdou PEKPELI",
-        role: "Lead Fullstack developer",
-        company: "Airbnb",
-        experience: "8 ans d'expérience",
-        tags: ["User Discovery", "Figma Expert"],
-        image: "/images/ex.jpg"
+        name: "Thomas DUBOIS",
+        role: "Doctorant en Intelligence Artificielle",
+        company: "Sorbonne Université",
+        experience: "5 ans d'études supérieures",
+        tags: ["Informatique", "Recherche", "Mathématiques"],
+        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Thomas"
     },
     {
-        name: "julien eymard PITO",
-        role: "Devops engeneer",
-        company: "Station F",
-        experience: "10 ans d'expérience",
-        tags: ["Scalability", "Leadership"],
-        image: "/images/ex.jpg"
+        name: "Sarah BENALI",
+        role: "Étudiante en L3 Économie & Gestion",
+        company: "Université de Lille",
+        experience: "Active depuis 1 an",
+        tags: ["Gestion", "Vie Associative", "Bourses"],
+        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
     }
 ];
 
 export const problemPoints = [
     {
-        problem: "Sensation d'être bloqué dans sa progression.",
-        solution: "Un regard extérieur expert pour débloquer votre potentiel.",
-        icon: "🚀"
-    },
-    {
-        problem: "Difficulté à prendre des décisions stratégiques.",
-        solution: "L'expérience d'un mentor qui a déjà traversé vos défis.",
+        problem: "Peur de faire le mauvais choix sur Parcoursup.",
+        solution: "Échangez avec ceux qui sont déjà passés par là pour choisir en confiance.",
         icon: "🎯"
     },
     {
-        problem: "Manque de réseau dans votre industrie.",
-        solution: "Accès privilégié à un écosystème de professionnels.",
+        problem: "Difficulté à s'adapter au rythme universitaire.",
+        solution: "Bénéficiez de conseils méthodologiques de la part d'étudiants expérimentés.",
+        icon: "📚"
+    },
+    {
+        problem: "Isolement et manque d'informations concrètes.",
+        solution: "Rejoignez une communauté solidaire pour ne plus être seul face à vos doutes.",
         icon: "🤝"
     }
 ];
 
 export const howItWorksSteps = [
     {
-        title: "Créez votre profil",
-        description: "Dites-nous qui vous êtes et quels sont vos objectifs de carrière.",
+        title: "Créez votre profil académique",
+        description: "Indiquez votre niveau actuel et les filières qui vous passionnent.",
         color: "bg-blue-500"
     },
     {
-        title: "Trouvez votre Mentor",
-        description: "Parcourez notre catalogue d'experts triés sur le volet par industrie.",
-        color: "bg-purple-500"
+        title: "Trouvez votre Mentor idéal",
+        description: "Filtrez par filière, établissement ou parcours spécifique.",
+        color: "bg-indigo-600"
     },
     {
-        title: "Commencez l'échange",
-        description: "Réservez votre première session et commencez à progresser ensemble.",
-        color: "bg-pink-500"
+        title: "Posez vos questions",
+        description: "Envoyez une demande et commencez à échanger sur votre futur parcours.",
+        color: "bg-emerald-500"
     }
 ];
 
 export const ctaDetails = {
-    heading: "Prêt à transformer votre avenir professionnel ?",
-    subheading: "Rejoignez des milliers de professionnels qui progressent chaque jour grâce au mentoring sur UniMentor."
+    heading: "Réussissez votre transition vers le supérieur",
+    subheading: "Rejoignez UniMentor pour bénéficier de l'expérience de vos aînés et trouver la filière qui vous correspond vraiment."
 };

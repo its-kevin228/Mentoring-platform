@@ -20,7 +20,7 @@ export default function HowItWorks() {
                         Comment ça marche sur <span className="text-primary italic">UniMentor</span> ?
                     </h3>
                     <p className="text-base-content/60 text-lg">
-                        Un parcours simple et structuré pour vous mener vers la réussite professionnelle.
+                        Un parcours simple et structuré pour vous mener vers la réussite académique.
                     </p>
                 </div>
 

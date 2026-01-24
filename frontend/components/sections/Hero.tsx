@@ -9,12 +9,11 @@ export default function Hero() {
                 <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-10">
 
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-neutral">
-                        Laissez-nous résoudre vos défis de <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">développement de carrière</span>
+                        Réussissez votre entrée dans le <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">supérieur avec l'aide de vos aînés</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-base-content/60 max-w-2xl leading-relaxed font-medium">
-                        UniMentor vous connecte aux meilleurs experts du secteur pour un accompagnement personnalisé.
-                        Ne restez plus bloqué, progressez avec un mentor dédié.
+                        UniMentor connecte lycéens et nouveaux étudiants avec des mentors universitaires expérimentés pour une orientation éclairée et sans stress.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">

@@ -1,0 +1,112 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  MENTOR
+  MENTORE
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+model User {
+  id            String    @id @default(uuid()) @db.Uuid
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  firstName     String    @map("first_name")
+  lastName      String    @map("last_name")
+  role          UserRole
+  isVerified    Boolean   @default(false) @map("is_verified")
+  avatarUrl     String?   @map("avatar_url")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  profile       Profile?
+  
+  // Relations pour les demandes de mentoring
+  mentoringRequestsSent     MentorshipRequest[] @relation("MentoreRequests")
+  mentoringRequestsReceived MentorshipRequest[] @relation("MentorRequests")
+
+  // Relations pour les messages
+  messagesSent     Message[] @relation("SentMessages")
+  messagesReceived Message[] @relation("ReceivedMessages")
+
+  // Relations pour les ressources
+  resources        Resource[]
+
+  @@map("users")
+}
+
+model Profile {
+  id               String   @id @default(uuid()) @db.Uuid
+  userId           String   @unique @map("user_id") @db.Uuid
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  institution      String?
+  fieldOfStudy     String?  @map("field_of_study")
+  studyLevel       String?  @map("study_level")
+  bio              String?
+  academicPath     String?  @map("academic_path")
+  skills           String[] 
+  availabilityInfo String?  @map("availability_info")
+  isActive         Boolean  @default(true) @map("is_active")
+
+  @@map("profiles")
+}
+
+model MentorshipRequest {
+  id        String        @id @default(uuid()) @db.Uuid
+  mentorId  String        @map("mentor_id") @db.Uuid
+  mentoreId String        @map("mentore_id") @db.Uuid
+  status    RequestStatus @default(PENDING)
+  message   String?
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  mentor    User          @relation("MentorRequests", fields: [mentorId], references: [id])
+  mentore   User          @relation("MentoreRequests", fields: [mentoreId], references: [id])
+
+  @@unique([mentorId, mentoreId], name: "unique_request")
+  @@map("mentorship_requests")
+}
+
+model Message {
+  id         String   @id @default(uuid()) @db.Uuid
+  senderId   String   @map("sender_id") @db.Uuid
+  receiverId String   @map("receiver_id") @db.Uuid
+  content    String
+  isRead     Boolean  @default(false) @map("is_read")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id])
+  receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+
+  @@map("messages")
+}
+
+model Resource {
+  id        String   @id @default(uuid()) @db.Uuid
+  title     String
+  content   String
+  category  String?
+  authorId  String?  @map("author_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+
+  author    User?    @relation(fields: [authorId], references: [id])
+
+  @@map("resources")
+}
