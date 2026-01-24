@@ -110,10 +110,10 @@ class App {
   }
 
   public listen(): void {
-    this.app.listen(this.port, () => {
+    this.app.listen(this.port, '0.0.0.0', () => {
       console.log(`🚀 Serveur backend démarré sur le port ${this.port}`);
       console.log(`Environnement: ${env.NODE_ENV}`);
-      console.log(` Health check: http://localhost:${this.port}/api/health`);
+      console.log(` Accessible sur le réseau: http://0.0.0.0:${this.port}`);
     });
   }
 }

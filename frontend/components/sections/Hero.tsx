@@ -1,15 +1,43 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, GraduationCap, Pencil, Pen, BookOpen, Calculator, Ruler } from "lucide-react";
 
 export default function Hero() {
     return (
         <section className="relative pt-20 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-base-100">
+            {/* Background Scholastic Motifs - More visible and structured */}
+            <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08] text-primary">
+                {/* Patterns scattered around */}
+                <div className="absolute top-[10%] left-[8%] rotate-[15deg]">
+                    <GraduationCap size={160} strokeWidth={1.5} />
+                </div>
+                <div className="absolute top-[25%] right-[10%] -rotate-[20deg]">
+                    <Pencil size={100} strokeWidth={1.5} />
+                </div>
+                <div className="absolute bottom-[20%] left-[12%] -rotate-[10deg]">
+                    <BookOpen size={120} strokeWidth={1.5} />
+                </div>
+                <div className="absolute bottom-[10%] right-[12%] rotate-[40deg]">
+                    <Pen size={90} strokeWidth={1.5} />
+                </div>
+                <div className="absolute top-[45%] left-[2%] rotate-[-15deg]">
+                    <Calculator size={80} strokeWidth={1.5} />
+                </div>
+                <div className="absolute bottom-[40%] right-[2%] rotate-[25deg]">
+                    <Ruler size={110} strokeWidth={1.5} />
+                </div>
+
+                {/* Geometric Shapes - Stronger Presence */}
+                <div className="absolute top-[20%] left-[25%] w-16 h-16 border-[3px] border-primary rounded-full opacity-20"></div>
+                <div className="absolute bottom-[30%] right-[20%] w-24 h-24 border-[3px] border-secondary rotate-45 opacity-20"></div>
+                <div className="absolute top-[55%] left-[60%] w-12 h-12 bg-primary/30 rounded-lg rotate-12 opacity-10"></div>
+            </div>
+
             <div className="container mx-auto px-4 md:px-8 relative z-10">
                 {/* Centered Content Block */}
                 <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-10">
 
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-neutral">
-                        Réussissez votre entrée dans le <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">supérieur avec l'aide de vos aînés</span>
+                        Réussissez votre entrée dans le <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-green-500 to-teal-400">supérieur avec l'aide de vos aînés</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-base-content/60 max-w-2xl leading-relaxed font-medium">
@@ -41,7 +69,7 @@ export default function Hero() {
                 </div>
             </div>
 
-            {/* Background Decorations */}
+            {/* Background Decorations (Glows) */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-0 opacity-20 pointer-events-none">
                 <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/30 rounded-full blur-[120px]"></div>
                 <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-secondary/30 rounded-full blur-[150px]"></div>

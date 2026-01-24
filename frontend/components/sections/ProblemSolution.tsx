@@ -7,11 +7,11 @@ export default function ProblemSolution() {
     return (
         <section className="py-24 bg-white overflow-hidden">
             <div className="container mx-auto px-4 md:px-8">
-                {/* Header contextuelle */}
-                <div className="max-w-3xl mb-16">
+                {/* Header contextuelle centroé */}
+                <div className="max-w-3xl mb-16 text-center mx-auto">
                     <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Pourquoi UniMentor ?</h2>
                     <h3 className="text-4xl md:text-5xl font-black text-neutral leading-tight">
-                        Transformez vos obstacles en <span className="text-primary italic">opportunités</span>
+                        Transformez vos obstacles en <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-green-500 to-teal-400 italic">opportunités</span>
                     </h3>
                 </div>
 
@@ -20,9 +20,9 @@ export default function ProblemSolution() {
                     {problemPoints.map((point, index) => {
                         const Icon = iconsMap[index] || CheckCircle2;
                         return (
-                            <div key={index} className="flex flex-col space-y-6 group">
+                            <div key={index} className="flex flex-col items-center text-center space-y-6 group">
                                 {/* Icon with subtle accent */}
-                                <div className="w-16 h-16 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300  group-hover:shadow-lg group-hover:shadow-primary/20">
+                                <div className="w-16 h-16 mx-auto flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300  group-hover:shadow-lg group-hover:shadow-primary/20">
                                     <Icon size={32} strokeWidth={1.5} />
                                 </div>
 
@@ -35,8 +35,8 @@ export default function ProblemSolution() {
                                         </h4>
                                     </div>
 
-                                    <div className="flex flex-col space-y-2 pt-4 border-t border-base-100">
-                                        <div className="flex items-center gap-2">
+                                    <div className="flex flex-col items-center space-y-2 pt-4 border-t border-base-100">
+                                        <div className="flex items-center justify-center gap-2">
                                             <CheckCircle2 size={16} className="text-primary" />
                                             <span className="text-xs font-bold text-primary uppercase tracking-tighter">Notre solution</span>
                                         </div>
