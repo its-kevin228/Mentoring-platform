@@ -32,7 +32,7 @@ export default function SignupPage() {
             });
 
             login(result.user, result.token);
-            router.push('/'); // Rediriger vers l'accueil ou le tableau de bord
+            router.push('/dashboard'); // Rediriger vers le tableau de bord
         } catch (err: any) {
             setError(err.message);
         } finally {

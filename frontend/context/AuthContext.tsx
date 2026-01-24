@@ -9,6 +9,8 @@ interface User {
     firstName: string;
     lastName: string;
     role: 'ADMIN' | 'MENTOR' | 'MENTORE';
+    isVerified: boolean;
+    avatarUrl: string | null;
 }
 
 interface AuthContextType {

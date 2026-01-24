@@ -29,7 +29,7 @@ export default function LoginPage() {
             });
 
             login(result.user, result.token);
-            router.push('/');
+            router.push('/dashboard');
         } catch (err: any) {
             setError(err.message);
         } finally {
