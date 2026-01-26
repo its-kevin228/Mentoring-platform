@@ -31,7 +31,11 @@ model User {
   lastName      String    @map("last_name")
   role          UserRole
   isVerified    Boolean   @default(false) @map("is_verified")
-  avatarUrl     String?   @map("avatar_url")
+  verificationToken String?   @map("verification_token")
+  refreshToken      String?   @map("refresh_token")
+  avatarUrl         String?   @map("avatar_url")
+  resetPasswordToken    String?   @map("reset_password_token")
+  resetPasswordExpires  DateTime? @map("reset_password_expires")
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
 

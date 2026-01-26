@@ -26,13 +26,14 @@ export default function SignupPage() {
         setIsLoading(true);
 
         try {
-            const result = await apiRequest<{ user: any; token: string }>('/auth/register', {
+            // On ne connecte plus automatiquement, on attend la réponse positive
+            await apiRequest('/auth/register', {
                 method: 'POST',
                 body: JSON.stringify(formData),
             });
 
-            login(result.user, result.token);
-            router.push('/dashboard'); // Rediriger vers le tableau de bord
+            // Redirection vers la page "Vérifiez vos emails"
+            router.push('/check-email');
         } catch (err: any) {
             setError(err.message);
         } finally {

@@ -23,12 +23,12 @@ export default function LoginPage() {
         setIsLoading(true);
 
         try {
-            const result = await apiRequest<{ user: any; token: string }>('/auth/login', {
+            const result = await apiRequest<{ user: any; token: string; refreshToken: string }>('/auth/login', {
                 method: 'POST',
                 body: JSON.stringify(formData),
             });
 
-            login(result.user, result.token);
+            login(result.user, result.token, result.refreshToken);
             router.push('/dashboard');
         } catch (err: any) {
             setError(err.message);
@@ -87,7 +87,7 @@ export default function LoginPage() {
                                 <label className="label py-1">
                                     <span className="label-text font-bold text-xs uppercase tracking-wider opacity-60">Mot de passe</span>
                                 </label>
-                                <Link href="#" className="text-[10px] font-black uppercase text-primary/60 hover:text-primary transition-colors">
+                                <Link href="/forgot-password" title="Réinitialiser mon mot de passe" className="text-[10px] font-black uppercase text-primary/60 hover:text-primary transition-colors cursor-pointer">
                                     Oublié ?
                                 </Link>
                             </div>

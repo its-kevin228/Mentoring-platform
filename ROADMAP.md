@@ -2,11 +2,11 @@
 
 Ce document répertorie les fonctionnalités à implémenter, les bugs à corriger et les améliorations nécessaires pour faire passer UniMentor d'un MVP à une plateforme de production.
 
-## 🔐 1. Authentification & Sécurité
-- [ ] **Mot de passe oublié** : Créer la route `/api/auth/forgot-password`, générer un token unique et envoyer un email de récupération.
-- [ ] **Vérification d'Email** : Activer le flux de vérification pour que les utilisateurs confirment leur compte via un lien envoyé par mail.
-- [ ] **Gestion des Sessions (JWT)** : Mettre en place des *Refresh Tokens* pour une session plus longue et sécurisée sans reconnexions fréquentes.
-- [ ] **Validations Backend** : Renforcer les validations Joi/Zod pour tous les champs (format email, force du mot de passe).
+## 🔐 1. Authentification & Sécurité (100% Terminé)
+- [x] **Mot de passe oublié** : Créer la route `/api/auth/forgot-password`, générer un token unique et envoyer un email de récupération.
+- [x] **Vérification d'Email** : Activer le flux de vérification pour que les utilisateurs confirment leur compte via un lien envoyé par mail.
+- [x] **Gestion des Sessions (JWT)** : Mettre en place des *Refresh Tokens* pour une session plus longue et sécurisée sans reconnexions fréquentes.
+- [x] **Validations Backend** : Renforcer les validations Joi/Zod pour tous les champs (format email, force du mot de passe).
 
 ## 👤 2. Profil & Expérience Utilisateur (UX)
 - [ ] **Stockage Images (Cloud)** : Migrer le stockage des images (Base64 actuel) vers un service cloud comme **Cloudinary** ou **AWS S3**.

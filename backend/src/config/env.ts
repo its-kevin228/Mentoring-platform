@@ -20,6 +20,8 @@ const envSchema = z.object({
     BCRYPT_SALT_ROUNDS: z.string().transform(Number).default('10'),
 
     FRONTEND_URL: z.string().url().default('http://localhost:3000'),
+
+    RESEND_API_KEY: z.string().optional(),
 });
 
 export type EnvConfig = z.infer<typeof envSchema>;

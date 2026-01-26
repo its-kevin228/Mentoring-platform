@@ -15,7 +15,13 @@ export class AuthUtils {
 
     static generateToken(payload: object): string {
         return jwt.sign(payload, env.JWT_SECRET, {
-            expiresIn: env.JWT_EXPIRES_IN as any || '7d',
+            expiresIn: '15m', // Access token court (15 min)
+        });
+    }
+
+    static generateRefreshToken(payload: object): string {
+        return jwt.sign(payload, env.JWT_SECRET, {
+            expiresIn: '7d', // Refresh token long (7 jours)
         });
     }
 
