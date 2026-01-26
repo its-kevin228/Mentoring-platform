@@ -5,8 +5,9 @@
   "main": "dist/server.ts",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node src/server.ts",
+    "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
+    "postinstall": "prisma generate",
     "test": "jest",
     "lint": "eslint src/**/*.ts",
     "type-check": "tsc --noEmit",
