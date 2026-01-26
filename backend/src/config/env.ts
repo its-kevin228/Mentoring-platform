@@ -21,7 +21,11 @@ const envSchema = z.object({
 
     FRONTEND_URL: z.string().url().default('http://localhost:3000'),
 
-    RESEND_API_KEY: z.string().optional(),
+    // Configuration SMTP pour Nodemailer
+    SMTP_HOST: z.string().default('smtp.gmail.com'),
+    SMTP_PORT: z.string().transform(Number).default('587'),
+    SMTP_USER: z.string().email(),
+    SMTP_PASSWORD: z.string(),
 });
 
 export type EnvConfig = z.infer<typeof envSchema>;

@@ -5,7 +5,7 @@ Ce document répertorie les fonctionnalités à implémenter, les bugs à corrig
 ## 🔐 1. Authentification & Sécurité (100% Terminé)
 - [x] **Mot de passe oublié** : Créer la route `/api/auth/forgot-password`, générer un token unique et envoyer un email de récupération.
 - [x] **Vérification d'Email** : Activer le flux de vérification pour que les utilisateurs confirment leur compte via un lien envoyé par mail.
-- [ ] **Migration Email Dev** : Remplacer Resend par Gmail/Nodemailer pour permettre l'envoi illimité en développement sans domaine vérifié.
+- [x] **Migration Email Dev** : Remplacer Resend par Gmail/Nodemailer pour permettre l'envoi illimité en développement sans domaine vérifié.
 - [x] **Gestion des Sessions (JWT)** : Mettre en place des *Refresh Tokens* pour une session plus longue et sécurisée sans reconnexions fréquentes.
 - [x] **Validations Backend** : Renforcer les validations Joi/Zod pour tous les champs (format email, force du mot de passe).
 

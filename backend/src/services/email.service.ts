@@ -1,19 +1,27 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import { env } from '../config/env';
 
-// Initialisation de Resend avec la clé API (à ajouter dans le .env)
-const resend = new Resend(env.RESEND_API_KEY || 're_123456789'); // Valeur par défaut pour éviter le crash si pas configuré
+// Configuration du transporteur Nodemailer avec Gmail
+const transporter = nodemailer.createTransport({
+    host: env.SMTP_HOST,
+    port: env.SMTP_PORT,
+    secure: false, // true pour 465, false pour les autres ports
+    auth: {
+        user: env.SMTP_USER,
+        pass: env.SMTP_PASSWORD,
+    },
+});
 
 export class EmailService {
     /**
      * Envoie l'email de vérification de compte
      */
     static async sendVerificationEmail(email: string, token: string, firstName: string) {
-        const verifyUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/verify-email?token=${token}`;
+        const verifyUrl = `${env.FRONTEND_URL}/verify-email?token=${token}`;
 
         try {
-            await resend.emails.send({
-                from: 'UniMentor <onboarding@resend.dev>', // "onboarding@resend.dev" est l'email de test par défaut gratuit de Resend
+            await transporter.sendMail({
+                from: `"UniMentor" <${env.SMTP_USER}>`,
                 to: email,
                 subject: 'Bienvenue sur UniMentor ! Vérifiez votre adresse email',
                 html: `
@@ -39,8 +47,7 @@ export class EmailService {
             });
             console.log(`[EmailService] Email de vérification envoyé à ${email}`);
         } catch (error) {
-            console.error('[EmailService] Erreur lors de l\'envoi de l\'email de vérification:', error);
-            // On ne throw pas d'erreur ici pour ne pas bloquer l'inscription si l'email échoue
+            console.error('[EmailService] Erreur lors de l\'envoi:', error);
         }
     }
 
@@ -48,11 +55,11 @@ export class EmailService {
      * Envoie l'email de réinitialisation de mot de passe
      */
     static async sendPasswordResetEmail(email: string, token: string) {
-        const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password?token=${token}`;
+        const resetUrl = `${env.FRONTEND_URL}/reset-password?token=${token}`;
 
         try {
-            await resend.emails.send({
-                from: 'UniMentor <onboarding@resend.dev>',
+            await transporter.sendMail({
+                from: `"UniMentor" <${env.SMTP_USER}>`,
                 to: email,
                 subject: 'Réinitialisation de votre mot de passe',
                 html: `
@@ -77,7 +84,7 @@ export class EmailService {
             });
             console.log(`[EmailService] Email de reset envoyé à ${email}`);
         } catch (error) {
-            console.error('[EmailService] Erreur lors de l\'envoi de l\'email de reset:', error);
+            console.error('[EmailService] Erreur lors de l\'envoi:', error);
         }
     }
 }
